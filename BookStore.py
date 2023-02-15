@@ -36,19 +36,18 @@ class BookStore:
         self.db.commit()
         return 
 
-    def removeItem(self, id="*", title="*", author="*", qty="*"):
-        print(id, title, author, qty)
+    def removeItem(self, condition : str):
         self.cursor.execute('''
                             DELETE FROM Books
-                            WHERE id = ? AND title = ? AND author = ? and qty = ?''',
-                            (id, title, author, qty))
+                            WHERE {0};'''.format(condition)
+                            )
         self.db.commit()
         return
 
-    def searchItem(self, where):
+    def searchItem(self, condition : str):
         self.cursor.execute('''
                             SELECT * FROM Books
-                            WHERE {0}'''.format(where)
+                            WHERE {0};'''.format(condition)
                             )
         return self.getTableString()
 
