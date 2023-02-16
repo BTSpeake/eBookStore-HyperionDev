@@ -36,6 +36,15 @@ class BookStore:
         self.db.commit()
         return 
 
+    def updateItem(self, change : str, condition : str):
+        self.cursor.execute('''
+                            UPDATE Books
+                            SET {0}
+                            WHERE {1} ;'''.format(change, condition)
+                            )
+        self.db.commit()
+        return
+
     def removeItem(self, condition : str):
         self.cursor.execute('''
                             DELETE FROM Books

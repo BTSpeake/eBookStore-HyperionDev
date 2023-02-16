@@ -81,6 +81,16 @@ def updateEntry(store):
     store   : BookStore
         An instance of the BookStore class used for accessing the eBookStore database
     """
+    print("\nUpdate")
+    print(  "------")
+    change =  input("\nEnter what you would like to change (SQL format):  SET ")
+    condition = input("Enter SQL search condition:                        WHERE ")
+    try: 
+        store.updateItem(change, condition)
+    except:
+        print("Invalid search condition. Please enter a valid SQL search condition.")
+    else:
+        print("Item successfully updated. ")
     return
 
 def deleteEntry(store):
